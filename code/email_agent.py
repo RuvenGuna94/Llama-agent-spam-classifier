@@ -21,3 +21,16 @@ classifier = Agent(
     allow_delegation=False,
     llm=model
 )
+
+# Create second agent. allow_delegation should be set to True.
+responder = Agent(
+    role = 'email responder',
+    goal = """based on the importance of the email, write a concise and simple response.
+    If the email is rated 'important', use a formal tone. If it is 'casual' use a casual tone and if it is 'spam' 
+    ignore the email."""
+    backstory = """Your only job is to write short responses to emails based on their importance. The importance 
+    will be provided to you by the 'classifier' agent."""
+    verbose=True,
+    allow_delegation=True,
+    llm=model
+)
