@@ -34,3 +34,11 @@ responder = Agent(
     allow_delegation=True,
     llm=model
 )
+
+# Next, we give the agents their tasks. 
+# Task for Classifier agent
+classify_email = Task(
+    description=f"classify the following email: {email}",
+    agent=classifier,
+    expected_output="One of these three options: 'important', 'casual' or 'spam'."
+)
