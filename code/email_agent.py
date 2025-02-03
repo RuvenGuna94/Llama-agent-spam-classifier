@@ -49,3 +49,14 @@ respond_to_email = Task(
     agent=responder,
     expected_output="A short response to the email"
 )
+
+# Define the Crew
+crew = Crew(
+    agents=[classifier, responder],
+    tasks = [classify_email, respond_to_email],
+    verbose=True,
+    process=Process.sequential
+
+)
+
+Output = crew.kickoff()
