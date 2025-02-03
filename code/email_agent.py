@@ -42,3 +42,10 @@ classify_email = Task(
     agent=classifier,
     expected_output="One of these three options: 'important', 'casual' or 'spam'."
 )
+
+# Task for Responder agent
+respond_to_email = Task(
+    description=f"Respond to the email: {email}",
+    agent=responder,
+    expected_output="A short response to the email"
+)
