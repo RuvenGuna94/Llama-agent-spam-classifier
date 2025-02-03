@@ -1,14 +1,17 @@
 # Import libraries
 import os
 
-from crewai import Agent, Task, Crew, Process
-from groq import Groq
+from dotenv import load_dotenv
+from crewai import Agent, Task, Crew, Process, LLM
+
+load_dotenv()
+
 # Init model
-model = Ollama(model = "deepseek-r1")
+llm = LLM(model="groq/llama-3.3-70b-versatile")
 
 # Create Agents for an email classifier
 # Specify email to classify
-email = "Inheritance from Nigerian Prince!! Click to collect USD$10M."
+email = "Meeting timing changed tomorrow from 9am to 3pm."
 
 
 # First agent receives email and second agent will write a response
@@ -19,8 +22,8 @@ classifier = Agent(
     backstory = """Your only job is to classify emails. Do not hesitate to mark 
     emails as casual if they are deemed not important. Your job is to help the user manage their inbox""",
     verbose=True,
-    allow_delegation=False,
-    llm=model
+    llm=llm, # LLM that powers the agent
+    allow_delegation=False
 )
 
 # Create second agent. allow_delegation should be set to True.
@@ -32,8 +35,8 @@ responder = Agent(
     backstory = """Your only job is to write short responses to emails based on their importance. The importance 
     will be provided to you by the 'classifier' agent.""",
     verbose=True,
-    allow_delegation=True,
-    llm=model
+    llm=llm, # LLM that powers the agent
+    allow_delegation=True
 )
 
 # Next, we give the agents their tasks. 
