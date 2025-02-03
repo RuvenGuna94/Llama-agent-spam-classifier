@@ -16,7 +16,7 @@ classifier = Agent(
     role = 'email classifier',
     goal = """Accurately classify emails based on their importance, give every email on of these ratings: Important, Casual or Spam.""",
     backstory = """Your only job is to classify emails. Do not hesitate to mark 
-    emails as casual if they are deemed not important. Your job is to help the user manage their inbox"""
+    emails as casual if they are deemed not important. Your job is to help the user manage their inbox""",
     verbose=True,
     allow_delegation=False,
     llm=model
@@ -27,9 +27,9 @@ responder = Agent(
     role = 'email responder',
     goal = """based on the importance of the email, write a concise and simple response.
     If the email is rated 'important', use a formal tone. If it is 'casual' use a casual tone and if it is 'spam' 
-    ignore the email."""
+    ignore the email.""",
     backstory = """Your only job is to write short responses to emails based on their importance. The importance 
-    will be provided to you by the 'classifier' agent."""
+    will be provided to you by the 'classifier' agent.""",
     verbose=True,
     allow_delegation=True,
     llm=model
