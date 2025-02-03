@@ -1,9 +1,10 @@
 # Import libraries
-from langchain_community.llms import ollama
-from crewai import Agent, Task, Crew, Process
+import os
 
+from crewai import Agent, Task, Crew, Process
+from groq import Groq
 # Init model
-model = ollama(model = "llama3")
+model = Ollama(model = "deepseek-r1")
 
 # Create Agents for an email classifier
 # Specify email to classify
